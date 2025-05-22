@@ -17,11 +17,12 @@ function debugLog(message) {
 
 // تنظیمات دیتابیس
 const dbConfig = {
-  host: 'localhost',
-  user: 'arnousha_papuser', // یوزر دیتابیس
-  password: 'lHqTGoDMb5bD', // رمز دیتابیس
-  database: 'arnousha_pap' // اسم دیتابیس
+  host: '34.206.123.199',
+  user: 'arnousha_papuser',
+  password: 'lHqTGoDMb5bD',
+  database: 'arnousha_pap'
 };
+
 
 const JWT_SECRET = 'mysecretkey_arnoush_2025_supersecure';
 
