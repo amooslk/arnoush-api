@@ -1,14 +1,18 @@
 const express = require('express');
 const mysql = require('mysql2/promise');
 const jwt = require('jsonwebtoken');
-const cors = require('cors');
 const fs = require('fs');
-
 const app = express();
-
-// CORS تنظیم کامل و نهایی
+const cors = require('cors');
+const allowedOrigins = ['https://partner.arnoush.am'];
 const corsOptions = {
-  origin: 'https://partner.arnoush.am',
+  origin: function (origin, callback) {
+    if (!origin || allowedOrigins.includes(origin)) {
+      callback(null, true);
+    } else {
+      callback(new Error('Not allowed by CORS'));
+    }
+  },
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
   allowedHeaders: ['Content-Type', 'Authorization'],
   credentials: true,
@@ -16,9 +20,8 @@ const corsOptions = {
 };
 
 app.use(cors(corsOptions));
-app.options('*', cors(corsOptions)); // این برای پاسخ به preflight requestها
+app.options('*', cors(corsOptions));
 
-app.use(express.json());
 
 
 // تابع برای لاگ کردن (دیباگ)
