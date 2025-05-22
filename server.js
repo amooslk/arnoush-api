@@ -4,13 +4,21 @@ const jwt = require('jsonwebtoken');
 const fs = require('fs');
 const cors = require('cors');
 
-const app = express();
+const app = express(); // ⬅️ حتماً اول تعریف شه!
+
+const allowedOrigins = ['https://partner.arnoush.am'];
 
 const corsOptions = {
-  origin: 'https://partner.arnoush.am',
+  origin: function (origin, callback) {
+    if (!origin || allowedOrigins.includes(origin)) {
+      callback(null, true);
+    } else {
+      callback(new Error('Not allowed by CORS'));
+    }
+  },
+  credentials: true,
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
   allowedHeaders: ['Content-Type', 'Authorization'],
-  credentials: true,
   optionsSuccessStatus: 204
 };
 
