@@ -10,9 +10,10 @@ app.use(cors());
 
 // تابع برای لاگ کردن (دیباگ)
 function debugLog(message) {
-  const logFile = '/home/arnousha/debug.log'; // مسیر لاگ تو هاست
+  const logFile = './debug.log'; // ذخیره در پوشه پروژه
   fs.appendFileSync(logFile, `${new Date().toISOString()} - ${message}\n`);
 }
+
 
 // تنظیمات دیتابیس
 const dbConfig = {
