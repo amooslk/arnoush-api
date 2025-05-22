@@ -17,11 +17,12 @@ function debugLog(message) {
 
 // تنظیمات دیتابیس
 const dbConfig = {
-  host: '34.206.123.199',
+  host: '46.17.101.71',
   user: 'arnousha_papuser',
   password: 'lHqTGoDMb5bD',
   database: 'arnousha_pap'
 };
+
 
 
 const JWT_SECRET = 'mysecretkey_arnoush_2025_supersecure';
