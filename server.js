@@ -4,15 +4,19 @@ const jwt = require('jsonwebtoken');
 const cors = require('cors');
 const fs = require('fs');
 
-const app = express(); // 👈 این باید بالا باشه
+const app = express();
 
+// CORS تنظیم کامل و نهایی
 const corsOptions = {
   origin: 'https://partner.arnoush.am',
-  methods: ['GET', 'POST', 'PUT', 'DELETE'],
-  allowedHeaders: ['Content-Type', 'Authorization']
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization'],
+  credentials: true,
+  optionsSuccessStatus: 204
 };
 
-app.use(cors(corsOptions)); // 👈 حالا اینجا می‌تونه اجرا بشه
+app.use(cors(corsOptions));
+app.options('*', cors(corsOptions)); // این برای پاسخ به preflight requestها
 
 app.use(express.json());
 
