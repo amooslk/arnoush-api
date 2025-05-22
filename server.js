@@ -2,19 +2,20 @@ const express = require('express');
 const mysql = require('mysql2/promise');
 const jwt = require('jsonwebtoken');
 const cors = require('cors');
+const fs = require('fs');
+
+const app = express(); // 👈 این باید بالا باشه
 
 const corsOptions = {
-  origin: ['https://partner.arnoush.am'], // آدرس فرانتت دقیقاً همین باید باشه
-  credentials: true
+  origin: 'https://partner.arnoush.am',
+  methods: ['GET', 'POST', 'PUT', 'DELETE'],
+  allowedHeaders: ['Content-Type', 'Authorization']
 };
 
-app.use(cors(corsOptions));
+app.use(cors(corsOptions)); // 👈 حالا اینجا می‌تونه اجرا بشه
 
-const fs = require('fs'); // برای لاگ کردن
-
-const app = express();
 app.use(express.json());
-app.use(cors());
+
 
 // تابع برای لاگ کردن (دیباگ)
 function debugLog(message) {
